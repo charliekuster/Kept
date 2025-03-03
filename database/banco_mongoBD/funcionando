@@ -1,0 +1,94 @@
+import paramiko
+from pymongo import MongoClient
+from gridfs import GridFS
+import stat  # Importa o módulo necessário
+
+# Configurações do servidor
+host = "kp.unifesp.br"
+port = 9004  
+username = "charlie"
+password = "Ch4r1i3@Kept"
+remote_path = "/home/data/analysis/LNCC_ok"
+
+# Criar um cliente SSH
+ssh = paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+# Criar um cliente Mongo
+client = MongoClient("mongodb://localhost:27017/")
+db = client["teste2"]
+collection = db["Bacteria"]
+fs = GridFS(db)  # Criar um GridFS para armazenar arquivos grandes
+
+def insert_collection(path, prefixo):
+    """Essa função insere os documentos no MongoDB"""
+    try:
+        items = sftp.listdir_attr(path)
+        for item in items:
+            item_path = f"{path}/{item.filename}"
+            file_data = {
+                "path": item_path,
+                "name": item.filename,
+                "prefixo": prefixo
+            }
+            if item.filename.startswith(prefixo):
+                collection.insert_one(file_data)
+                print(item.filename, "inserido no banco")
+
+            is_directory = stat.S_ISDIR(item.st_mode)
+    except Exception as e:
+        print(f"Erro ao acessar {path}: {e}")
+
+def upload_file(file_path, file_name):
+    """Lê um arquivo via SFTP e armazena no GridFS"""
+    try:
+        with sftp.open(file_path, 'rb') as file_stream:
+            file_id = fs.put(file_stream, filename=file_name)
+            return file_id
+    except Exception as e:
+        print(f"Erro ao fazer upload do arquivo {file_name}: {e}")
+        return None
+
+def fill_collection():
+    for documento in collection.find():
+        print(f"Processando {documento['path']}")
+
+        filtro = {"_id": documento["_id"]}
+        path = f"{documento['path']}/main/annotator/prokka"
+
+        try:
+            items = sftp.listdir_attr(path)
+            for item in items:
+                file_path = f"{path}/{item.filename}"
+                
+                if item.filename.endswith(("blastdb.tar.gz", "faa.gz", "ffn.gz", "fna.gz", 
+                                           "fsa.gz", "gff.gz", "sqn.gz", "tbl.gz", 
+                                           ".tsv", ".txt")):
+                    file_id = upload_file(file_path, item.filename)
+
+                    if file_id:
+                        atualizacao = {"$set": {item.filename: file_id}}
+                        documento_atualizado = collection.find_one_and_update(filtro, atualizacao)
+                        if documento_atualizado:
+                            print(f"Arquivo {item.filename} salvo e documento atualizado")
+                        else:
+                            print("Documento não encontrado")
+        except Exception as e:
+            print(f"Erro ao acessar {path}: {e}")
+
+try:
+    # Conectar ao servidor
+    ssh.connect(host, port, username, password)
+
+    # Criar um cliente SFTP 
+    sftp = ssh.open_sftp()
+
+    insert_collection(remote_path, "KSP")
+    fill_collection()
+
+    # Fechar conexões
+    sftp.close()
+    ssh.close()
+
+except Exception as e:
+    print(f"Erro: {e}")
