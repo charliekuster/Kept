@@ -19,7 +19,6 @@ fs = GridFS(db)
 
 documento = (collection.find_one({"KSP33.main.qc.summary": {"$exists": True}})).get("KSP33", {}).get("main", {}).get("qc", {}).get("summary", SON())
 
-
 if documento:
     valor = documento.get("KSP33_R1-final_fastqc.html")
     #print(valor)
@@ -36,6 +35,6 @@ if documento:
     print(arquivo)
     # Ler o conteúdo do arquivo
     conteudo = arquivo.read()
-    # print("Conteúdo do arquivo:", conteudo)
+    print("Conteúdo do arquivo:", conteudo)
 else:
     print("Nenhum documento encontrado.")
