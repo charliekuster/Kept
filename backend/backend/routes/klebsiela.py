@@ -3,6 +3,9 @@ from pymongo.database import Database as MongoDatabase
 from pymongo.collection import Collection
 from fastapi.responses import FileResponse
 from bson import ObjectId
+from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
+import math
 from backend.services.database import get_db
 from gridfs import GridFS
 import tempfile
@@ -52,7 +55,45 @@ def get_bacteria_paths(db: MongoDatabase = Depends(get_db)):
 
     return {"paths": paths_list}
 
-@router.get("/bacteria/{id}")
+
+
+@router.get("/bacteria/metadados")
+def get_bacteria_metadados(db: MongoDatabase = Depends(get_db)):
+    """
+    Retorna os metadados de todas as bactérias para exibição em tabela.
+    """
+    collection: Collection = db["Bacteria"]
+    metadados_list = []
+
+    for document in collection.find({}):
+        try:
+            # Iterando sobre as chaves do documento (ex: "KSP34")
+            for key, value in document.items():
+                if isinstance(value, dict) and "metadados" in value:
+                    metadados = value["metadados"]
+
+                    # Tratando campos com valores inválidos (NaN etc.)
+                    metadados_limpos = {}
+                    for key, value in metadados.items():
+                        if value is None or (isinstance(value, float) and math.isnan(value)):
+                            metadados_limpos[key] = None
+                        else:
+                            metadados_limpos[key] = value
+
+                    # Usa o ID da bactéria ou o _id como identificador
+                    bacteria_id = metadados.get("ID") or str(document.get("_id"))
+                    metadados_limpos["Bacteria_ID"] = bacteria_id
+
+                    metadados_list.append(metadados_limpos)
+
+        except (KeyError, TypeError):
+            continue  # Ignora documentos com estrutura inesperada
+
+    return JSONResponse(content=jsonable_encoder(metadados_list))
+
+
+
+@router.get("/bacteria/{id}") # deixar sempre no fim
 def get_bacteria_by_id(id: str, db: MongoDatabase = Depends(get_db)):
     """
     Busca um documento específico no banco de dados pelo seu ObjectId e retorna
@@ -89,9 +130,7 @@ def get_bacteria_by_id(id: str, db: MongoDatabase = Depends(get_db)):
     return {"files": result_list}
 
 
-###################
-
-@router.get("/download/{file_id}")
+@router.get("/download/{file_id}") # deixar sempre no fim
 def download_file(file_id: str, db: MongoDatabase = Depends(get_db)):
     """
     Faz o download de um arquivo armazenado no GridFS pelo seu file_id.

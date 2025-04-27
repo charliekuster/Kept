@@ -20,7 +20,7 @@ df = df[2:].reset_index(drop=True)  # Remove as duas primeiras linhas e reseta o
 
 # Atualizar os documentos existentes no MongoDB
 for _, row in df.iterrows():
-    bacteria_name = row["ID"]  # Certifique-se de que a coluna ID corresponde ao nome das bactérias
+    bacteria_name = row["ID"] # Certifique-se de que a coluna ID corresponde ao nome das bactérias
     if isinstance(bacteria_name, float) or str(bacteria_name).lower() == "nan" or not bacteria_name:
         continue
     metadados = row.to_dict()
