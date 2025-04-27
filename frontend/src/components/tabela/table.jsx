@@ -18,7 +18,6 @@ const Table = () => {
   return (
     <div className="table-container">
       <table>
-        <caption>Bacterial Samples Data</caption>
         <thead>
           <tr>
             <th>ID LEMC</th>

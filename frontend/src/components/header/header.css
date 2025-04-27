@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+header {
+    position: relative; /* Permite o uso de z-index sem fixar o cabeçalho */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px 0px 20px;
+    height: 8vh;
+    background-color: #124D99;
+    z-index: 9999; /* Garante que o cabeçalho fique acima dos outros elementos */
+}
+
+header img {
+    width: 100px;
+    height: auto;
+}
+
+.nav_links {
+    list-style: none;
+    display: flex;
+    gap: 60px; /* Ajuste do espaçamento entre os links */
+}
+
+.nav_links li a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.auth {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre Log in, divisor e Sign up */
+}
+
+.auth a {
+    text-decoration: none;
+    color: white; /* Cor do texto "Log in" e "Sign up" */
+}
+
+.auth span {
+    color: white; /* Cor do divisor */
+    font-weight: bold;
+}

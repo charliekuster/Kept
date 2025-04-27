@@ -1,15 +1,19 @@
 /* Estilo geral */
-body {
-    font-family: Arial, sans-serif;
-    color: #333;
+  body {
+        font-family: Arial, sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 0;
   }
   
   /* Container da tabela */
   .table-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 81.8%;
+    position: absolute; /* Tira o fixo, para que a tabela se mova com a rolagem */
+    right: 0; /* Fixa à direita da tela */
+    top: 8vh; /* Ajusta a tabela logo abaixo do cabeçalho */
     overflow-x: auto;
+    z-index: 10; /* Define o z-index menor que o do cabeçalho */
   }
   
   /* Estilos da tabela */
@@ -17,16 +21,19 @@ body {
     width: 100%;
     border-collapse: collapse;
     font-size: 12px;
+    top: 50px; /* Ajuste a distância do topo, se necessário */
+    background-color: white; /* Para garantir que o fundo da tabela seja branco */
+    border: 1px solid #ddd;
   }
   
   /* Cabeçalho da tabela */
   thead tr {
-    background-color: #005f99;
+    background-color: #7FBA8A;
     color: rgb(255, 255, 255);
   }
   
   th, td {
-    border: 1px solid #ddd;
+    border: 1px solid #cdcdcd;
     padding: 8px;
     text-align: center;
   }

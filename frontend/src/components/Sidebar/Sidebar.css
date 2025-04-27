@@ -1,16 +1,24 @@
+/* Estilo geral para o filtro (sidebar) */
 .filter-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  position: fixed;
+  top: 8vh; /* Coloca o filtro abaixo do cabeçalho */
+  left: 0; /* Alinha no canto esquerdo da tela */
   padding: 1rem;
-  width: 250px;
+  width: 230px; /* Ajuste a largura conforme necessário */
+  height: 90%; /* Ocupa 92% da altura da tela, deixando um pequeno espaço abaixo */
+  background-color: #fff; /* Contraste para visibilidade */
+  box-shadow: 2px 0px 10px rgba(68, 68, 68, 0.1); /* Opcional: adicione sombra para destacar o sidebar */
+  z-index: 999; /* Certifique-se de que o sidebar fique acima do conteúdo */
 }
 
+/* Estilo para os itens dentro do sidebar */
 .filter-item {
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid #9a9a9a;
   padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
 }
 
+/* Estilo para o cabeçalho de cada item do filtro */
 .filter-header {
   display: flex;
   justify-content: space-between;
@@ -18,50 +26,49 @@
   cursor: pointer;
 }
 
+/* Estilo para o rótulo do filtro */
 .filter-label {
   display: flex;
   align-items: center;
   gap: 1.1rem;
-  color: #000000;
+  color: #464646;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Estilo para o ícone de filtro */
 .filter-icon {
-  color: #000000; /* Gray-700 */
+  color: #777777;
 }
 
+/* Estilo para a rotação do ícone */
 .chevron-icon {
   transition: transform 0.3s;
-  color: #000000;
+  color: #6d6d6d;
 }
 
+/* Estilo para a rotação do ícone de chevron */
 .rotate-180 {
   transform: rotate(180deg);
 }
 
+/* Estilo para o conteúdo dos filtros */
 .filter-content {
   margin-top: 0.5rem;
   font-size: 0.875rem;
-  color: #000000; /* Gray-500 */
+  color: #2d2d2d;
 }
 
+/* Estilo para o campo de entrada do filtro */
 .filter-input {
   border: none;
   border-bottom: 1px solid #262626;
   background: transparent;
   outline: none;
-  font-size: 1rem;
-  color: #eb7777;
+  color: #313131;
   width: 90%;
-}
-
-.filter-menu {
-  position: fixed;
-  top: 3rem; /* Alinha no topo */
-  left: 0; /* Alinha no canto esquerdo */
-  padding-top: 3rem;
-  padding: 1rem;
-  width: 250px; /* Ou o tamanho que preferir */
-  height: 90%; /* Para garantir que ocupe toda a altura da tela */
-  background-color: #fff; /* Para dar contraste e melhorar a visibilidade */
-  z-index: 1000; /* Para garantir que fique acima de outros elementos */
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

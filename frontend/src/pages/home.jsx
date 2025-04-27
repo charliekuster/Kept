@@ -4,6 +4,7 @@ import api from '../services/api';
 //import Sidebar from '../components/Sidebar/Sidebar';
 import Table from '../components/tabela/table';
 import Sidebar from '../components/Sidebar/Sidebar';
+import Header from '../components/header/header'
 
 function Home() {
   const [dados, setDados] = useState([]);
@@ -20,6 +21,7 @@ function Home() {
 
   return (
     <div>
+        <Header/>
         <Sidebar/>
         <Table/>
       {/*<pre>{JSON.stringify(dados, null, 2)}</pre> */} 
