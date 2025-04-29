@@ -5,10 +5,11 @@
   left: 0; /* Alinha no canto esquerdo da tela */
   padding: 1rem;
   width: 230px; /* Ajuste a largura conforme necessário */
-  height: 90%; /* Ocupa 92% da altura da tela, deixando um pequeno espaço abaixo */
   background-color: #fff; /* Contraste para visibilidade */
   box-shadow: 2px 0px 10px rgba(68, 68, 68, 0.1); /* Opcional: adicione sombra para destacar o sidebar */
   z-index: 999; /* Certifique-se de que o sidebar fique acima do conteúdo */
+  height: 82.2%;
+  overflow-y: auto;  /* ativa rolagem vertical se necessário */
 }
 
 /* Estilo para os itens dentro do sidebar */

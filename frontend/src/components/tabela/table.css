@@ -9,6 +9,7 @@
   /* Container da tabela */
   .table-container {
     width: 81.8%;
+    height: 86.7%;
     position: absolute; /* Tira o fixo, para que a tabela se mova com a rolagem */
     right: 0; /* Fixa à direita da tela */
     top: 8vh; /* Ajusta a tabela logo abaixo do cabeçalho */

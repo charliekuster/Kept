@@ -3,6 +3,8 @@ import api from '../services/api';
 import Table from '../components/tabela/table';
 import Sidebar from '../components/Sidebar/Sidebar';
 import Header from '../components/header/header';
+import LogoSection from '../components/LogoSection/LogoSection';
+import Footer from '../components/Footer/Footer';
 
 function Home() {
   const [dados, setDados] = useState([]);
@@ -39,10 +41,15 @@ function Home() {
   };
 
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
+
+    
       <Header />
       <Sidebar dados={dados} onApplyFilters={applyFilters} onClearFilters={clearFilters} />
-      <Table dados={filteredData} />
+      <Table dados={filteredData} /> 
+      <Footer />
+
     </div>
   );
 }
