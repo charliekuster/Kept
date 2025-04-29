@@ -1,33 +1,50 @@
-// Exemplo em src/pages/Home.jsx
 import React, { useEffect, useState } from 'react';
 import api from '../services/api';
-//import Sidebar from '../components/Sidebar/Sidebar';
 import Table from '../components/tabela/table';
 import Sidebar from '../components/Sidebar/Sidebar';
-import Header from '../components/header/header'
+import Header from '../components/header/header';
 
 function Home() {
   const [dados, setDados] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
-    api.get('/klebsiela/bacteria/metadados') // Ex: FastAPI retorna dados em /meu-endpoint
+    api.get('/klebsiela/bacteria/metadados')
       .then(response => {
         setDados(response.data);
+        setFilteredData(response.data); // Define os dados iniciais
       })
       .catch(error => {
         console.error('Erro ao buscar dados:', error);
       });
   }, []);
 
+  // Aplica os filtros selecionados
+  const applyFilters = (selectedFilters) => {
+    let filtered = [...dados];
+
+    // Aplica filtro para cada campo
+    for (const [campo, values] of Object.entries(selectedFilters)) {
+      if (values.length > 0) {
+        filtered = filtered.filter((item) => values.includes(item[campo]));
+      }
+    }
+
+    setFilteredData(filtered);
+  };
+
+  // Limpa todos os filtros e exibe os dados originais
+  const clearFilters = () => {
+    setFilteredData(dados);
+  };
+
   return (
     <div>
-        <Header/>
-        <Sidebar/>
-        <Table/>
-      {/*<pre>{JSON.stringify(dados, null, 2)}</pre> */} 
+      <Header />
+      <Sidebar dados={dados} onApplyFilters={applyFilters} onClearFilters={clearFilters} />
+      <Table dados={filteredData} />
     </div>
   );
 }
 
 export default Home;
-

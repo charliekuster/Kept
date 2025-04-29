@@ -1,5 +1,5 @@
 /* Estilo geral para o filtro (sidebar) */
-.filter-menu {
+.side-menu {
   position: fixed;
   top: 8vh; /* Coloca o filtro abaixo do cabeçalho */
   left: 0; /* Alinha no canto esquerdo da tela */
@@ -14,7 +14,7 @@
 /* Estilo para os itens dentro do sidebar */
 .filter-item {
   border-bottom: 1px solid #9a9a9a;
-  padding-bottom: 0.5rem;
+  padding-bottom: 2px;
   padding-top: 0.5rem;
 }
 
@@ -63,12 +63,61 @@
 /* Estilo para o campo de entrada do filtro */
 .filter-input {
   border: none;
-  border-bottom: 1px solid #262626;
+  border-bottom: 1px solid #9a9a9a;
   background: transparent;
+  margin-bottom: 5px;
   outline: none;
   color: #313131;
-  width: 90%;
+  width: 100%;
   font-size: 12px;
   font-weight: 500;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.filter-options {
+  list-style: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+
+.filter-option:hover {
+  background-color: #f0f0f0; /* cinza claro */
+}
+
+.filter-option.selected {
+  background-color: rgb(197, 197, 197); /* cinza claro ao clicar */
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  gap: 10px;
+}
+
+.apply-btn,
+.clear-btn {
+  flex: 1;
+  padding: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(84, 84, 84, 0.2);
+  transition: box-shadow 0.2s ease;
+  
+}
+
+.apply-btn {
+  background-color: #77ac81;
+  color: rgb(255, 255, 255);
+}
+
+.clear-btn {
+  background-color: #4071b2;
+  color: rgb(255, 255, 255);
 }

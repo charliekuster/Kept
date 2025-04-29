@@ -2,18 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from '../../services/api';
 import "./table.css";
 
-const Table = () => {
-  const [registerArray, setRegisterArray] = useState([]);
-
-  useEffect(() => {
-    api.get("/klebsiela/bacteria/metadados") // Altere o endpoint de acordo com sua necessidade
-      .then(response => {
-        setRegisterArray(response.data); // Definindo os dados recebidos
-      })
-      .catch(error => {
-        console.error("Erro ao buscar dados:", error);
-      });
-  }, []);
+const Table = ({dados}) => {
 
   return (
     <div className="table-container">
@@ -44,8 +33,8 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {registerArray.length > 0 ? (
-            registerArray.map((item, index) => (
+          {dados.length > 0 ? (
+            dados.map((item, index) => (
               <tr key={index}>
                 <td>{item["ID LEMC"]}</td>
                 <td>{item["ID"]}</td>

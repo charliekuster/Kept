@@ -140,3 +140,15 @@
     height: 80px; /* Ajuste o tamanho conforme necessário */
 }
 
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+	padding: 10px;
+	text-align: center;
+	margin-top: 50px;
+}
+
+footer p {
+    font-size: 0.9rem;
+}
