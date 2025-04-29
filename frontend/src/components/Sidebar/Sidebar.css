@@ -8,7 +8,7 @@
   background-color: #fff; /* Contraste para visibilidade */
   box-shadow: 2px 0px 10px rgba(68, 68, 68, 0.1); /* Opcional: adicione sombra para destacar o sidebar */
   z-index: 999; /* Certifique-se de que o sidebar fique acima do conteúdo */
-  height: 82.2%;
+  height: calc(100vh - 17.6vh);
   overflow-y: auto;  /* ativa rolagem vertical se necessário */
 }
 
