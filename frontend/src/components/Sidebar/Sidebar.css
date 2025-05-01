@@ -1,14 +1,14 @@
 /* Estilo geral para o filtro (sidebar) */
 .side-menu {
-  position: fixed;
+  position: absolute;
   top: 8vh; /* Coloca o filtro abaixo do cabeçalho */
   left: 0; /* Alinha no canto esquerdo da tela */
   padding: 1rem;
-  width: 230px; /* Ajuste a largura conforme necessário */
+  width: 16%; /* Ajuste a largura conforme necessário */
   background-color: #fff; /* Contraste para visibilidade */
   box-shadow: 2px 0px 10px rgba(68, 68, 68, 0.1); /* Opcional: adicione sombra para destacar o sidebar */
   z-index: 999; /* Certifique-se de que o sidebar fique acima do conteúdo */
-  height: calc(100vh - 17.6vh);
+  height: calc(100vh - 17.7vh);
   overflow-y: auto;  /* ativa rolagem vertical se necessário */
 }
 
@@ -81,6 +81,7 @@
   font-size: 12px;
   margin: 0;
   margin-bottom: 4px;
+  color: #4b4b4b;
 }
 
 

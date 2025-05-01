@@ -1,26 +1,27 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import './header.css';
+
 
 const Header = () => {
     return (
         <header>
             <div className="logo">
-                <a href="/index.html">
-                    <img src="/Imagens/Logos/Site/logo.png" alt="Logo" />
-                </a>
+                <Link to="/">
+                    <img src="/logos/site/kept.png" alt="Logo" />
+                </Link>
             </div>
             <nav>
                 <ul className="nav_links">
-                    <li><a href="/genomes/indexGenomes.html">GENOMES</a></li>
-                    <li><a href="/upload/indexUpload.html">UPLOAD</a></li>
-                    <li><a href="/documentation/indexDoc.html">DOCUMENTATION</a></li>
-                    <li><a href="indexAbout.html">ABOUT</a></li>
+                    <li><Link to="/bacGenomes">GENOMES</Link></li>
+                    <li><Link to="/upload">UPLOAD</Link></li>
+                    <li><Link to="/documentation">DOCUMENTATION</Link></li>
+                    <li><Link to="/about">ABOUT</Link></li>
                 </ul>
             </nav>
             <div className="auth">
-                <a href="">Log in</a>
+                <Link to="/login">Log in</Link>
                 <span>|</span>
-                <a href="">Sign up</a>
+                <Link to="/signup">Sign up</Link>
             </div>
         </header>
     );

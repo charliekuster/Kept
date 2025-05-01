@@ -42,9 +42,12 @@ function BacGenoma() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <Header />
 
-      <LogoSection/>
+
+    
+      <Header />
+      <Sidebar dados={dados} onApplyFilters={applyFilters} onClearFilters={clearFilters} />
+      <Table dados={filteredData} /> 
       <Footer />
 
     </div>

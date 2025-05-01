@@ -15,11 +15,12 @@
     top: 8vh; /* Ajusta a tabela logo abaixo do cabeçalho */
     overflow-x: auto;
     z-index: 10; /* Define o z-index menor que o do cabeçalho */
+    margin-left: 4000px;
   }
   
   /* Estilos da tabela */
   table {
-    width: 100%;
+  
     border-collapse: collapse;
     font-size: 12px;
     top: 50px; /* Ajuste a distância do topo, se necessário */
